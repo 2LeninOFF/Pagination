@@ -1,52 +1,48 @@
 import React from "react";
-import Quality from "./qualitie";
-import Bookmark from "./bookmark";
+import Qualitie from "./qualitie";
+import BookMark from "./bookmark";
 import PropTypes from "prop-types";
 
 const User = ({
+    _id,
     name,
     qualities,
     profession,
     completedMeetings,
     rate,
-    bookmark,
-    _id,
     onDelete,
-    onToggleBookmark
+    bookmark,
+    onToggleBookMark
 }) => {
     return (
-        <tr key={_id}>
+        <tr>
             <td>{name}</td>
             <td>
-                {qualities.map((quality) => (
-                    <Quality {...quality} key={quality._id} />
+                {qualities.map((qual) => (
+                    <Qualitie key={qual._id} {...qual} />
                 ))}
             </td>
             <td>{profession.name}</td>
             <td>{completedMeetings}</td>
-            <td>{rate}</td>
+            <td>{rate} /5</td>
             <td>
-                <Bookmark
+                <BookMark
                     status={bookmark}
-                    onToggle={onToggleBookmark}
-                    id={_id}
+                    onClick={() => onToggleBookMark(_id)}
                 />
             </td>
             <td>
                 <button
-                    key={_id}
-                    type="button"
+                    onClick={() => onDelete(_id)}
                     className="btn btn-danger"
-                    onClick={() => {
-                        onDelete(_id);
-                    }}
                 >
-                    Удалить
+                    delete
                 </button>
             </td>
         </tr>
     );
 };
+
 User.propTypes = {
     _id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
@@ -56,6 +52,7 @@ User.propTypes = {
     rate: PropTypes.number.isRequired,
     onDelete: PropTypes.func.isRequired,
     bookmark: PropTypes.bool.isRequired,
-    onToggleBookmark: PropTypes.func.isRequired
+    onToggleBookMark: PropTypes.func.isRequired
 };
+
 export default User;
