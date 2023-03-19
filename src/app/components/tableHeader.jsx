@@ -28,9 +28,7 @@ const TableHeader = ({ onSort, selectedSort, columns }) => {
                         scope="col"
                     >
                         {columns[column].name}
-                        <Caret
-                            statusCaret = {selectedSort.order}
-                        />
+                        <Caret statusCaret = {selectedSort.order} selectCaret = {columns[column].path} focusCaret = {selectedSort.path}/>
                     </th>
                 ))}
                 {/* <th scope="col">Качества</th>
@@ -48,5 +46,6 @@ TableHeader.propTypes = {
     selectedSort: PropTypes.object.isRequired,
     columns: PropTypes.object.isRequired
 };
-// {/* <i className={"bi bi-caret" + (onSort.order === "asc" ? "-up-fill" : "-down-fill")}></i> */}
+
 export default TableHeader;
+// {/* <Caret statusCaret = {selectedSort.order}/> */}
