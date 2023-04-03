@@ -1,4 +1,5 @@
 import { professionsObject as professions } from "./professions.api";
+
 const qualities = {
     tedious: {
         _id: "67rdca3eeb7f6fgeed471198",
@@ -32,7 +33,7 @@ const qualities = {
     }
 };
 
-const users = [
+export const users = [
     {
         _id: "67rdca3eeb7f6fgeed471815",
         name: "Джон Дориан",
@@ -143,6 +144,13 @@ const users = [
     }
 ];
 
+const getById = (id) =>
+    new Promise((resolve) => {
+        window.setTimeout(function() {
+            resolve(users.find((user) => user._id === id));
+        }, 1000);
+    });
+
 const fetchAll = () =>
     new Promise((resolve) => {
         window.setTimeout(function() {
@@ -151,5 +159,6 @@ const fetchAll = () =>
     });
 
 export default {
-    fetchAll
+    fetchAll,
+    getById
 };
